@@ -18,3 +18,5 @@ def test_score(score_int):
 
 score = int(stdin.readline().rstrip())
 test_score(score)
+
+test_edit = "hi"
