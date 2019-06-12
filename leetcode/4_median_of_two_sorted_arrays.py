@@ -31,4 +31,4 @@ if __name__ == '__main__':
     solution = Solution()
     print(solution.findMedianSortedArrays([1, 3], [2]))
     print(solution.findMedianSortedArrays([1, 2], [3, 4]))
-    print(solution.findMedianSortedArrays([1, 2], [3, 4]))
+    print(solution.findMedianSortedArrays([1, 3], [3, 4]))
