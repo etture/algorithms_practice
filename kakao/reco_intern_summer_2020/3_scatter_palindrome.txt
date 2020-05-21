@@ -1,0 +1,19 @@
+A palindrome is a string which reads the same forward and backwards, for example, tacocat and mom. A string is a scatter-palindrome if its letters can be rearranged to form a palindrome. Given an array consisting of n strings, for each string, determine how many of its substrings are scatter-palindromes. A substring is a contiguous range of characters within the string.
+ 
+Example
+strToEvaluate = ['aabb']
+ 
+The scatter-palindromes are a, aa, aab, aabb, a, abb, b, bb, b. There are 9 substrings that are scatter-palindromes.
+ 
+Function Description
+Complete the scatterPalindrome function in the editor below.
+ 
+scatterPalindrome has one parameter:
+    string strToEvaluate[n]: the n strings to be evaluated
+Returns
+    int[n]: each element i represents the number of substrings of strToEvaluate[i] which are scatter-palindromes.
+ 
+Constraints
+1 ≤ n ≤ 100
+1 ≤ size of strToEvaluate[i] ≤ 1000
+all characters of strToEvaluate[i] ∈ ascii[a-z]

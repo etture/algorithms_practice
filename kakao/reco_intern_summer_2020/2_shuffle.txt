@@ -1,0 +1,45 @@
+아래의 아티클을 보시고 적합한 알고리즘을 구현하세요
+http://labs.spotify.com/2014/02/28/how-to-shuffle-songs/
+ 
+아래의 조건을 참고하세요.
+음악명으로 구성된 플레이리스트를 해당 음악의 아티스트 명을 참고해서 동일한 아티스트의 곡이 인접하지 않도록 플레이리스트를 셔플
+반드시 셔플 기능을 구현하셔야 합니다. 즉, 매 실행시마다 임의로 섞인 결과를 반환해야 합니다.
+10,000개의 데이터를 처리하는데 수행시간 3초 미만에 처리 완료하여야 합니다. (빠르면 빠를수록 좋음)
+C/C++, python을 사용하시면 가산점이 있습니다.
+아티클의 내용 이외에도 더 좋은 알고리즘이 있으면 그것을 구현하시고 이유를 설명해주셔도 좋습니다.
+아티클을 주의 깊게 읽어보시고 글의 목적을 파악하셔서 코드를 작성하시는 것이 필요합니다.
+입력
+입력의 첫 줄에는 테스트 케이스의 개수 T 가 주어집니다. (T <= 10,000)
+각 테스트 케이스는 2줄로 구성됩니다. 
+첫 줄에는 playlist 가 TSV(Tab-Separated Value)  형태로 주어지고, 이어서 다음 줄에는 artist 가 TSV 형태로 주어집니다.
+각 playlist, artist 의 최대 길이는 4096 을 넘지 않는다.
+출력
+각 테스트 케이스 별로 한 줄로 적절히 셔플된 playlist 를 TSV 포맷으로 출력한다.
+ 
+예제 INPUT	예제 OUTPUT
+2\n
+Yesterday\tLet it be\tGee\t뭐있지\n
+Beatles\tBeatles\t소녀시대\t소녀시대\n
+SIGNAL\tI LUV IT\tNew Face\tShape of You\n
+TWICE\tPSY\tPSY\tEd Sheeran\n
+뭐있지\tLet it be\tGee\tYesterday\n
+I LUV IT\tShape of You\tNew Face\tSIGNAL\n 
+ 
+비고
+입출력은 STDIN, STDOUT으로 주어집니다. 각 언어별 환경에 대한 사항은 (https://www.hackerrank.com/environment) 해당 링크를 참조해주세요
+예시 문제: https://www.hackerrank.com/challenges/solve-me-first
+HackerRank 시스템의 오류로 진행을 할 수 없는 경우에는
+​코드와 테스트 케이스를 바탕으로 로컬에서 프로그램을 작성하고 참고자료로 보내주세요.
+받으신 이메일에 명시된 이메일 주소(recotech@kakaocorp.com)로 문의 주세요.
+Python 3에서는 다음과 같은 코드가 필요합니다.
+ 
+import sys
+import codecs
+sys.stdin = codecs.getreader("utf-8")(sys.stdin.detach())
+sys.stdout = codecs.getwriter("utf-8")(sys.stdout.detach())
+ 
+테스트 결과 코드 설명
+Good job: 코드가 문제 없이 실행됨
+Too much errors (<틀린 테스트 케이스 숫자>/<전체 케이스 숫자>): 문제에 주어진 조건을 만족하지 않는 Test case가 너무 많은 경우, 틀린 Test case의 개수를 함께 출력
+최종 Case에서 1,000 이하의 collision 이 나와야합니다
+기타 Error case는 자세한 메시지를 읽어보세요
