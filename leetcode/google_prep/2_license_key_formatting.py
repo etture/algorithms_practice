@@ -45,5 +45,5 @@ test_cases = [
 if __name__ == '__main__':
     Tester.factory(
         test_cases,
-        func=lambda input: licenseKeyFormatting(input[0], input[1])
+        func=lambda input: licenseKeyFormatting(*input)
     ).run()
