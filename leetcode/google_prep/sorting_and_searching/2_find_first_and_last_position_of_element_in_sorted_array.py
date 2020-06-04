@@ -45,6 +45,8 @@ class Solution:
                 print(f'idx: {idx}, val: {nums[idx]}')
                 if nums[idx] == target:
                     end_pos = idx
+                else:
+                    break
             
             # backwards run
             start_pos = target_idx
@@ -53,6 +55,8 @@ class Solution:
                 print(f'idx: {idx}, val: {nums[idx]}')
                 if nums[idx] == target:
                     start_pos = idx
+                else:
+                    break
 
             return [start_pos, end_pos]
 
