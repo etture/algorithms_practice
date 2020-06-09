@@ -124,7 +124,7 @@ class Solution:
         return shortest[0]
 
 
-    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+    def ladderLength_bad(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         def create_transform_table(dictionary: List[str]):
             def check_one_char_diff(word1, word2) -> dict:
                 diff_cnt = 0
@@ -164,6 +164,37 @@ class Solution:
             pprint(transform_table['sand'])
 
 
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        from collections import deque
+
+        if not beginWord or not endWord or endWord not in wordList or len(wordList) == 0:
+            return 0
+
+        L = len(beginWord)
+        all_combo_dict = dict()
+        for word in wordList + [beginWord]:
+            for pos in range(L):
+                key = word[:pos] + '*' + word[pos+1:]
+                if key not in all_combo_dict:
+                    all_combo_dict[key] = list()
+                all_combo_dict[key].append(word)
+        
+        queue = deque([(beginWord, 1)])
+        visited = set([beginWord])
+        while queue:
+            cur_word, level = queue.popleft()
+            for pos in range(L):
+                key = cur_word[:pos] + '*' + cur_word[pos+1:]
+                candidates = all_combo_dict[key]
+                if endWord in candidates:
+                    return level + 1
+                else:
+                    for c in candidates:
+                        if c not in visited:
+                            queue.append((c, level+1))
+                            visited.add(c)
+                all_combo_dict[key] = list()
+        return 0
 
 
 '''메인 실행 코드 -- DO NOT TOUCH BELOW THIS LINE'''
