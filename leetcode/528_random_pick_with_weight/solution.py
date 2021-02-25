@@ -21,38 +21,44 @@ import time
 class Solution:
 
     def __init__(self, w: List[int]):
-        # print(f'input: {w}')
-
-        # self.w = w
-        # self.probability_map = dict()
-        self.total = sum(w)
-
-        # val = 0
-        # for idx, item in enumerate(w):
-        #     for _ in range(item):
-        #         self.probability_map[val] = idx
-        #         val += 1
-
+        self.total = len(w)
         seed(self.total * time.time())
 
-
         self.range_list = list()
-        cnt = 0
+        self.prefix_sum = 0
         for idx, item in enumerate(w):
-            cnt += item
-            self.range_list.append(tuple([cnt, idx]))
-        # print(self.range_list)
+            self.prefix_sum += item
+            self.range_list.append(self.prefix_sum)
+        print(self.range_list)
 
 
     def pickIndex(self) -> int:
-        random_num = floor(random() * self.total) + 1
-        # print(f'map: {self.probability_map}, random_num: {random_num} -> index: {self.probability_map[random_num]}')
-        # return self.probability_map[random_num]
+        random_num = floor(random() * self.prefix_sum) + 1
+        print(f'random_num: {random_num}')
+        
+        # Linear search 
+        # for idx, item in enumerate(self.range_list):
+        #     if random_num <= item:
+        #         return idx
 
-        # print(f'random_num: {random_num}')
-        for item in self.range_list:
-            if random_num <= item[0]:
-                return item[1]
+        # Binary search
+        left, right = 0, self.total - 1
+        while left <= right:
+            mid = (left + right) // 2
+            # print(f'    left: {left}, mid: {mid}, right: {right}, random_num: {random_num}, compare_to: {self.range_list[mid]}')
+            if self.range_list[mid] == random_num:
+                return mid
+            elif self.range_list[mid] < random_num:
+                left = mid + 1
+            else:
+                if mid == 0:
+                    return mid
+                else:
+                    if self.range_list[mid-1] < random_num:
+                        return mid
+                    else:
+                        right = mid - 1
+        
 
 
 # Your Solution object will be instantiated and called as such:
@@ -64,6 +70,7 @@ if __name__ == '__main__':
     test_cases = [
         ([1], 1),
         ([1,3], 5),
+        ([1, 3, 10, 15, 5, 15], 10),
     ]
     
     for idx, case in enumerate(test_cases):
